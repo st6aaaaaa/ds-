@@ -39,3 +39,5 @@ def fouth_sol(n):
     print(bits)
 
 fouth_sol(63)
+
+
