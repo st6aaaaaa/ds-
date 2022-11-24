@@ -39,4 +39,13 @@ def func(nums1,nums2):
             res = res ^ a ^ res_b
     return res
 
+def func(n,x):
+    if n == 1:
+        return x
+    if n%2 == 0 :
+        return func(n//2,x)**2
+    else :
+        return x*func(n//2,x)**2
 
+r = func(4,3)
+print(r)
