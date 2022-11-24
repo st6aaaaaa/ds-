@@ -49,3 +49,26 @@ def nextGreatestLetter( letters, target: str) -> str:
                 return letters[mid + 1]
 
     return letters[low]
+
+
+
+]
+d= dict()
+for i in s:
+    if i not in d:
+        d[i] = 1
+    else :
+        d[i]+=1
+one_even = 0
+n_1_odd = len(d) - 1
+print(d)
+for i in d :
+    if d[i]%2 :
+        one_even+=1
+    else :
+        n_1_odd -=1
+
+if one_even > 1 or n_1_odd >1 :
+    print('false')
+else:
+    print('true')
