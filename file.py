@@ -54,7 +54,14 @@ def foo(s):
     print(d)
     print( False if len([1 for i in d if d[i]%2==1]) > 1  else True )
 
+'''Given a non-empty array of integers nums, every element appears 
+twice except for one. Find that single one.
 
-
-
-foo('qweqweer')
+You must implement a solution with a linear runtime complexity
+ and use only constant extra space.
+'''
+def singleNumber(nums) -> int:
+    res = 0
+    for i in nums:
+        res ^= i
+    return res
