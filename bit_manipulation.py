@@ -91,9 +91,9 @@ def quicksort(arr):
     r = [a for a in arr if number_of_bits(a) > barrier]
     return quicksort(l) + sorted(m) + quicksort(r)
 
-arr = [1024,512,256,128,64,32,16,8,4,2,1]
-arr = quicksort(arr)
-print(arr)
+#arr = [1024,512,256,128,64,32,16,8,4,2,1]
+#arr = quicksort(arr)
+
 
 
 ##################################
@@ -136,3 +136,28 @@ def merge(a, b):
 
 def func(arr):
     return merge_sort(arr)
+
+
+def convert_list_int(nums):
+    power =0
+    res = 0
+    for i in range(len(nums)-1,-1,-1):
+        res += nums[i]*2**power
+        power+=1
+    return res
+[0, 1, 1, 1, 1, 1, 1, 1]
+
+def binary(n):
+    if n==1 :
+        return [0]
+    if n==0 :
+        return [1]
+    else :
+        return binary(n//2) + ( [0] if n % 2 else [1] )
+
+
+
+
+
+print(bin(8))
+
