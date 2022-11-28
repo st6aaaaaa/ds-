@@ -243,3 +243,63 @@ import collections
                 d[i].next = d[i + 1]
             d[cnt - 1].next = None
             return d[0]
+
+'''Given a non-negative integer represented as a linked 
+list of digits, plus one to the integer.
+
+The digits are stored such that the most significant 
+digit is at the head of the list.
+Example 1:
+
+Input: head = [1,2,3]
+Output: [1,2,4]
+Example 2:
+
+Input: head = [0]
+Output: [1]
+ 
+Constraints:
+
+The number of nodes in the linked list is in the range [1, 100].
+0 <= Node.val <= 9
+The number represented by the linked list does not 
+contain leading zeros except for the zero itself. '''
+
+class ListNode:
+    def __init__(self,val):
+        self.val =val
+        self.next = None
+
+def plusOne(head) :
+    if not head.next and head.val <= 8:
+        return ListNode(head.val + 1)
+    else:
+        arr = []
+        while head:
+            arr.append(head)
+            head = head.next
+
+        cur = ListNode(0)
+        arr.insert(0, cur)
+
+        if arr[len(arr) - 1].val <= 8:
+            arr[len(arr) - 1].val += 1
+            return arr[1]
+        else:
+            arr[len(arr) - 1].val = 0
+            carr = 1
+            i = len(arr) - 2
+            while i >= 0:
+                tmp = arr[i].val + carr
+                arr[i].val = (arr[i].val + carr) % 10
+
+                if tmp % 10 != 0:
+                    break
+                carr = 1
+                i -= 1
+
+            if i != 0:
+                return arr[1]
+            else:
+                arr[0].next = arr[1]
+                return arr[0]
