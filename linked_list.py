@@ -224,3 +224,22 @@ def rotateRight( head, k):
             arr[i].next = arr[i + 1]
         arr[len(arr) - 1].next = None
         return arr[0]
+
+    ##############       second solution
+    #############################################
+import collections
+    def rotateRight(head, k):
+        if not head or k == 0:
+            return head
+        else:
+            d = collections.deque()
+            cnt = 0
+            while head:
+                d.append(head)
+                head = head.next
+                cnt += 1
+            d.rotate(k % cnt)
+            for i in range(cnt - 1):
+                d[i].next = d[i + 1]
+            d[cnt - 1].next = None
+            return d[0]
