@@ -157,7 +157,107 @@ def binary(n):
 
 
 
+def travelling(arr,res=[]):
+    if len(arr) == 1:
+        res.append(arr[0])
+        return res
+    else :
+        res.append(arr[0])
+        print('hello ',end='')
+        print(res)
+        travelling(arr[1:],res)
 
 
-print(bin(8))
+'''You are given a string allowed consisting of distinct 
+characters and an array of strings words. A string is consistent 
+if all characters in the string appear in the string allowed.
 
+Return the number of consistent strings in the array words.
+
+ 
+
+Example 1:
+
+Input: allowed = "ab", words = ["ad","bd","aaab","baa","badab"]
+Output: 2
+Explanation: Strings "aaab" and "baa" are consistent since they only contain characters 'a' and 'b'.
+Example 2:
+
+Input: allowed = "abc", words = ["a","b","c","ab","ac","bc","abc"]
+Output: 7
+Explanation: All strings are consistent.
+Example 3:
+
+Input: allowed = "cad", words = ["cc","acd","b","ba","bac","bad","ac","d"]
+Output: 4
+Explanation: Strings "cc", "acd", "ac", and "d" are consistent.'''
+
+
+def countConsistentStrings( allowed: str, words) -> int:
+    cnt = 0
+    flag = False
+
+    for word in words:
+        s = set(word)
+        for i in s:
+            if i not in allowed:
+                flag = True
+                break
+        if flag == False:
+            cnt += 1
+
+        if flag:
+            flag = False
+
+    return cnt
+
+'''A bit flip of a number x is choosing a bit in the binary representation of x 
+and flipping it from either 0 to 1 or 1 to 0.
+
+For example, for x = 7, the binary representation is 111 and 
+we may choose any bit (including any leading zeros not shown) and flip it. 
+We can flip the first bit from the right to get 110, 
+flip the second bit from the right to get 101, flip the fifth bit 
+from the right (a leading zero) to get 10111, etc.
+Given two integers start and goal, return the minimum number of bit 
+flips to convert start to goal.
+
+ 
+
+Example 1:
+
+Input: start = 10, goal = 7
+Output: 3
+Explanation: The binary representation of 10 and 7 are 1010 and 0111 respectively. 
+We can convert 10 to 7 in 3 steps:
+- Flip the first bit from the right: 1010 -> 1011.
+- Flip the third bit from the right: 1011 -> 1111.
+- Flip the fourth bit from the right: 1111 -> 0111.
+It can be shown we cannot convert 10 to 7 in less than 3 steps. Hence, we return 3.
+Example 2:
+
+Input: start = 3, goal = 4
+Output: 3
+Explanation: The binary representation of 3 and 4 are 011 and 100 respectively. 
+We can convert 3 to 4 in 3 steps:
+- Flip the first bit from the right: 011 -> 010.
+- Flip the second bit from the right: 010 -> 000.
+- Flip the third bit from the right: 000 -> 100.
+It can be shown we cannot convert 3 to 4 in less than 3 steps. Hence, we return 3.'''
+
+
+def minBitFlips(start: int, goal: int) -> int:
+    start = bin(start)[2:]
+    goal = bin(goal)[2:]
+
+    maximum = max(len(start), len(goal))
+
+    start = start.zfill(maximum)
+    goal = goal.zfill(maximum)
+
+    cnt = 0
+
+    for i in range(maximum):
+        if start[i] != goal[i]:
+            cnt += 1
+    return cnt
