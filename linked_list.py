@@ -111,3 +111,9 @@ class MyLinkedList:
 # obj.addAtTail(val)
 # obj.addAtIndex(index,val)
 # obj.deleteAtIndex(index)
+
+def size_of_linked_list(root):
+    arr=[root]
+    while arr[-1].next:
+        arr.append(arr[-1].next)
+    return len(arr)
