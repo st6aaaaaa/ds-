@@ -117,3 +117,39 @@ def size_of_linked_list(root):
     while arr[-1].next:
         arr.append(arr[-1].next)
     return len(arr)
+
+
+'''Given the head of a linked list, remove the nth node 
+from the end of the list and return its head.
+Example 1:
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+Example 2:
+
+Input: head = [1], n = 1
+Output: []
+Example 3:
+
+Input: head = [1,2], n = 1
+Output: [1]
+'''
+
+
+def removeNthFromEnd(head, n: int):
+    c = function(head, n)
+    if c == 0:
+        head = head.next
+        return head
+    else:
+        cnt = 1
+        cur = head
+        while cnt != c:
+            head = head.next
+            cnt += 1
+        head.next = head.next.next
+        return cur
+def function(node, n):
+    arr = [node]
+    while arr[-1].next:
+        arr.append(arr[-1].next)
+    return len(arr) - n
