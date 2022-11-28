@@ -303,3 +303,82 @@ def plusOne(head) :
             else:
                 arr[0].next = arr[1]
                 return arr[0]
+
+
+'''Given a linked list, swap every two adjacent nodes and 
+return its head. You must solve the problem without modifying 
+the values in the list's nodes (i.e., only nodes themselves may be changed.)
+Example 1:
+Input: head = [1,2,3,4]
+Output: [2,1,4,3]
+Example 2:
+Input: head = []
+Output: []
+Example 3:
+
+Input: head = [1]
+Output: [1]'''
+
+### solutiion first
+def swapPairs(head):
+    if head and head.next is None:
+        return head
+
+    if not head:
+        return None
+
+    else:
+        arr = []
+
+        while head:
+            arr.append(head)
+            head = head.next
+
+        if len(arr) % 2 == 0:
+
+            for i in range(0, len(arr), 2):
+                tmp = arr[i]
+                arr[i] = arr[i + 1]
+                arr[i + 1] = tmp
+
+        else:
+            for i in range(0, len(arr) - 1, 2):
+                tmp = arr[i]
+                arr[i] = arr[i + 1]
+                arr[i + 1] = tmp
+
+        for i in range(len(arr) - 1):
+            arr[i].next = arr[i + 1]
+        arr[-1].next = None
+        return arr[0]
+
+######################### solution second
+
+def swapPairs(head):
+    if head and head.next is None:
+        return head
+
+    if not head:
+        return None
+
+    else:
+        arr = []
+
+        while head:
+            arr.append(head)
+            head = head.next
+
+        i = 0
+        n = len(arr)
+        res = []
+
+        while i < n - 1:
+            res.append(arr[i + 1])
+            res.append(arr[i])
+            i += 2
+        if n % 2:
+            res.append(arr[-1])
+        for i in range(n - 1):
+            res[i].next = res[i + 1]
+        res[n - 1].next = None
+        return res[0]
