@@ -718,3 +718,15 @@ def getDecimalValue(head) -> int:
         res = res + (arr[power]) * 2 ** (len(arr) - 1 - power)
         power -= 1
     return res
+
+
+
+def reverse_linked_list(head):
+    previous = None
+    cur = head
+    while cur :
+        node_next = cur.next
+        cur.next = previous
+        previous = cur
+        cur = node_next
+    return previous
