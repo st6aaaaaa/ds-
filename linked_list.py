@@ -591,3 +591,94 @@ def hasCycle(head) -> bool:
         head = head.next
 
     return False
+
+
+'''Given the head of a linked list, return the list after sorting it in ascending order.
+Example 1:
+Input: head = [4,2,1,3]
+Output: [1,2,3,4]
+Example 2:
+Input: head = [-1,5,3,4,0]
+Output: [-1,0,3,4,5]
+Example 3:
+
+Input: head = []
+Output: []'''
+
+
+def sortList(head):
+    ###################
+
+    ##        FIRST SOLUTION
+
+    def length_of_linked_list(node):
+        if not node:
+            return None
+        else:
+            arr = []
+            while node:
+                arr.append(node)
+                node = node.next
+            return arr[len(arr) // 2]
+
+    def merge(headA, headB):
+        ans = ListNode()
+        b = ans
+
+        while headA and headB:
+            if headA.val < headB.val:
+                ans.next = headA
+                ans = ans.next
+                headA = headA.next
+            else:
+                ans.next = headB
+                ans = ans.next
+                headB = headB.next
+
+        if headA is None:
+            ans.next = headB
+        else:
+            ans.next = headA
+
+        return b.next
+
+    def merge_sort(node):
+
+        if not node or not node.next:
+            return node
+        else:
+            nB = length_of_linked_list(node)
+
+            a = node
+            nA = a
+
+            while a.next is not nB:
+                a = a.next
+            a.next = None
+
+            nA = merge_sort(nA)
+            nB = merge_sort(nB)
+
+            return merge(nA, nB)
+
+    return merge_sort(head)
+
+    ######################################################
+    ###
+
+    #      SECOND SOLUTION
+def sortList(head):
+    arr = []
+    while head:
+        arr.append(head.val)
+        head = head.next
+    arr.sort()
+    if len(arr) == 0:
+        return None
+
+    for i in range(len(arr)):
+        arr[i] = ListNode(arr[i])
+    for i in range(len(arr) - 1):
+        arr[i].next = arr[i + 1]
+    arr[len(arr) - 1].next = None
+    return arr[0]
