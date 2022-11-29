@@ -480,3 +480,42 @@ def getIntersectionNode(headA, headB):
             headB = headB.next
 
         return None
+
+'''Given the head of a singly linked list and two integers 
+left and right where left <= right, reverse the nodes of the 
+list from position left to position right, and return the reversed list.
+Example 1:
+Input: head = [1,2,3,4,5], left = 2, right = 4
+Output: [1,4,3,2,5]
+Example 2:
+
+Input: head = [5], left = 1, right = 1
+Output: [5]
+Constraints:
+
+The number of nodes in the list is n.
+1 <= n <= 500
+-500 <= Node.val <= 500
+1 <= left <= right <= n'''
+
+
+def reverseBetween(head, left: int, right: int):
+    arr = []
+    res = []
+    cnt = 0
+    while head:
+
+        if left - 1 <= cnt <= right - 1:
+            arr.append(head.val)
+
+        res.append(head.val)
+        cnt += 1
+        head = head.next
+
+    res = res[:left - 1] + arr[::-1] + res[right:]
+    for i in range(len(res)):
+        res[i] = ListNode(res[i])
+    for i in range(len(res) - 1):
+        res[i].next = res[i + 1]
+    res[len(res) - 1].next = None
+    return res[0]
