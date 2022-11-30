@@ -99,7 +99,49 @@ def number_of_bits(n):
             cnt += 1
         n >>=1
     return cnt
-a = number_of_bits(255)
-print(a)
-a = 5
-#print ( 1>>1 )
+
+
+import collections  as c
+
+a = [1,2,3,4,5,6,7,8,9]
+b = [4,3,1,3,4,5,6,7,8,9]
+intersect = c.deque()
+
+i = len(a) -1
+j = len(b) - 1
+while i>=0 and j>=0:
+    if a[i] == b[j] :
+        intersect.appendleft(a[i])
+    else:
+        break
+    i-=1
+    j-=1
+
+
+
+
+def func(n):
+    cnt =0
+    while n :
+        cnt+=1
+        n//=10
+    print(cnt)
+
+a = [0, 5, 10, 15, 20, 25, 30]
+import bisect
+
+def func(nums,t):
+    low = 0
+    high = len(nums) - 1
+    while low<=high:
+        mid = (low+high)//2
+        if nums[mid] == t :
+            return  mid
+        elif nums[mid] < t :
+            low =  mid + 1
+        else :
+            high = mid - 1
+    return high
+a = [0, 5, 10, 15, 20, 25, 30]
+b = func(a,19)
+print(b)

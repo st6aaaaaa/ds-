@@ -38,3 +38,25 @@ def lengthOfLastWord(s: str) -> int:
     if ind == -1:
         return len(s)
     return len(s[ind + 1:])
+
+'''Given a string s, find the first non-repeating character in it and return its index. 
+If it does not exist, return -1.
+
+'''
+import collections as c
+def firstUniqChar( s: str) -> int:
+    ans = c.Counter(s)
+    for el in s:
+        if ans[el] == 1:
+            return s.index(el)
+    return -1
+
+d = c.deque()
+a = [1,2,3,4,5]
+for i,el in enumerate(a):
+    if i == 3 :
+        d.append((el,i))
+    else :
+        d.append(el)
+
+print(d)
