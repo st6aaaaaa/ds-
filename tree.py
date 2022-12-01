@@ -52,4 +52,25 @@ def isSymmetric( root) -> bool:
 
     return mirror(root, root)
 
+################  second solution
+
+
+    d = deque()
+    d.append(root)
+    d.append(root)
+    while d:
+        t1 = d.pop()
+        t2 = d.pop()
+        if t1 is None and t2 is None:
+            continue
+        if t1 is None and t2 or t2 is None and t1:
+            return False
+        if t1.val != t2.val:
+            return False
+        d.append(t1.left)
+        d.append(t2.right)
+        d.append(t1.right)
+        d.append(t2.left)
+    return True
+
 
