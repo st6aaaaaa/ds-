@@ -37,5 +37,19 @@ class Solution:
         return res
 
 
+'''Given the root of a binary tree, check whether it is 
+a mirror of itself (i.e., symmetric around its center).'''
+
+
+def isSymmetric( root) -> bool:
+    def mirror(t1, t2):
+        if t1 is None and not t2:
+            return True
+        if t1 is None and t2 or t1 and not t2:
+            return False
+
+        return t1.val == t2.val and mirror(t1.left, t2.right) and mirror(t2.left, t1.right)
+
+    return mirror(root, root)
 
 
