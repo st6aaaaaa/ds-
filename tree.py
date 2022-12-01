@@ -13,3 +13,11 @@ class Solution:
         arr = []
         func(root, arr)
         return arr
+
+
+    ### ########################   second solution
+        if root is None:
+            return []
+
+        return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
+
