@@ -21,3 +21,21 @@ class Solution:
 
         return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
 
+
+    ############################  third
+
+        res  = []
+        stack = []
+        cur = root
+        while cur or stack:
+            while cur :
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop()
+            res.append(cur.val)
+            cur = cur.right
+        return res
+
+
+
+
