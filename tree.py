@@ -74,8 +74,24 @@ def isSymmetric( root) -> bool:
     return True
 
 
-'''Given the root of a binary tree and an integer targetSum, return 
-true if the tree has a root-to-leaf path such that adding up all the values along 
-the path equals targetSum.
+'''Given an integer array nums where the elements are sorted in ascending order, convert it to a 
+height-balanced
+ binary search tree.'''
 
-A leaf is a node with no children.'''
+class TreeNode:
+    def __init__(self,val=0,left = None , right = None ):
+        self.val = val
+        self.right = right
+        self.left = left
+def sortedArrayToBST(nums):
+    def func(low, high):
+        if low > high:
+            return None
+        else:
+            mid = (low + high) // 2
+            root = TreeNode(nums[mid])
+            root.left = func(low, mid - 1)
+            root.right = func(mid + 1, high)
+            return root
+
+    return func(0, len(nums) - 1)
