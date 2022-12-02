@@ -95,3 +95,8 @@ def sortedArrayToBST(nums):
             return root
 
     return func(0, len(nums) - 1)
+### second solution
+    if len(nums) == 0:
+        return None
+    mid = len(nums) // 2
+    return TreeNode(nums[mid], self.sortedArrayToBST(nums[:mid]), self.sortedArrayToBST(nums[mid + 1:]))
