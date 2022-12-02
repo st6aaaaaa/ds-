@@ -100,3 +100,43 @@ def sortedArrayToBST(nums):
         return None
     mid = len(nums) // 2
     return TreeNode(nums[mid], self.sortedArrayToBST(nums[:mid]), self.sortedArrayToBST(nums[mid + 1:]))
+
+
+'''Given the root of a binary tree, return the sum of all left leaves.
+
+A leaf is a node with no children. A left leaf is a leaf that is the left child of another node.
+
+'''
+
+
+def sumOfLeftLeaves(root,isleft ):
+    if root.left is None and root.right is None:
+        return 0
+    if root and root.left is None and root.right is None :
+        return root.val if isleft else 0
+    sum = 0
+    if root.left :
+        sum+=sumOfLeftLeaves(root.left,True)
+    if root.right :
+        sum+=sumOfLeftLeaves(root.right,False)
+    return sum
+
+
+def sumOfLeftLeaves(root):
+    if root.left is None and root.right is None:
+        return 0
+
+    def func(node):
+        return node and not node.left and not node.right
+
+    sum = 0
+    stack = [root]
+    while stack :
+        cur = stack.pop()
+        if func(cur.left):
+            sum+=cur.left.val
+        if cur.right:
+            stack.append(cur.right)
+        if cur.left:
+            stack.append(cur.left)
+    return sum
