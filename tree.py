@@ -140,3 +140,34 @@ def sumOfLeftLeaves(root):
         if cur.left:
             stack.append(cur.left)
     return sum
+
+'''Given the root node of a binary search tree and two integers low and high, 
+return the sum of values of all nodes with a value in the inclusive range [low, high].
+ '''
+
+
+def rangeSumBST( root, low: int, high: int) -> int:
+    ######################## first solution
+    if root is None:
+        return 0
+    if root.left is None and root.right is None and low <= root.val <= high:
+        return root.val
+    if root.left is None and root.right is None and (root.val < low or root.val > high):
+        return 0
+
+    return (root.val if low <= root.val <= high else 0) + rangeSumBST(root.left, low, high) + rangeSumBST(
+        root.right, low, high)
+
+    ############################  second solution
+    cur = None
+    stack = [root]
+    sum = 0
+    while stack:
+        cur = stack.pop()
+        if cur.val >= low and cur.val <= high:
+            sum += cur.val
+        if cur.right:
+            stack.append(cur.right)
+        if cur.left:
+            stack.append(cur.left)
+    return sum
