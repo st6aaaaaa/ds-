@@ -51,23 +51,30 @@
 #day 1
 #
 
-file=fl1.txt
-declare -A array
+#file=fl1.txt
+#declare -A array
+#
+#while read line
+#do
+#     for word in $line
+#     do
+#       if [ -n "${array[$word]}" ]
+#       then
+#          array["$word"]=$((${array["$word"]} + 1))
+#       else
+#         array["$word"]=1
+#       fi
+#     done
+#done < $file
+#
+#for key in "${!array[@]}"
+#do
+#echo $key ${array[$key]}
+#done | sort -k2 -rn
 
-while read line
-do
-     for word in $line
-     do
-       if [ -n "${array[$word]}" ]
-       then
-          array["$word"]=$((${array["$word"]} + 1))
-       else
-         array["$word"]=1
-       fi
-     done
-done < $file
+# second solution
 
-for key in "${!array[@]}"
+for i in `cat fl1.txt`
 do
-echo $key ${array[$key]}
-done | sort -k2 -rn
+    echo $i
+    done | sort | uniq -c | sort -k1nr | awk '{print $2" "$1}'
