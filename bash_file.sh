@@ -22,48 +22,52 @@
 #     echo $REPLY
 #    fi
 #done<file.txt
-
-#second solution
-cat file.txt | awk '/^\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$/{print $0}'
-
-
-
-
-
-#read var1 var2
 #
-#echo "var1  $var1"
-#
-#echo "var2  $var2"
-#
-
-#cnt=0
-#
-#((cnt+=100))
-#echo $cnt
+##second solution
+#cat file.txt | awk '/^\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$/{print $0}'
 #
 
 #
-#cnt=5
-#if [ $cnt -gt 4 ] && [ $cnt -lt 10 ]
-#then
-#echo 'kkkk'
-#fi
-
-##
-#file=fl1.txt
-
-
-#while read line
-#do
+#Write a bash script to calculate the
+#frequency
+# of each word in a text file words.txt.
 #
-#  if [ $line =~ ^\([0-9]{3}\)[[:blank:]][0-9]{3}\-[0-9]{4} ] or [ $line =~ [0-9]{3}\-[0-9]{3}\-[0-9]{4} ]
-#  then
-#  echo $line
-#  fi
+#For simplicity sake, you may assume:
 #
-#done <$file
+#words.txt contains only lowercase characters and space ' ' characters.
+#Each word must consist of lowercase characters only.
+#Words are separated by one or more whitespace characters.
+#Example:
+#
+#Assume that words.txt has the following content:
+#
+#the day is sunny the the
+#the sunny is is
+#Your script should output the following, sorted by descending frequency:
+#
+#the 4
+#is 3
+#sunny 2
+#day 1
+#
 
-#
-#awk 'NR==10 {print}' file.txt
-#sed -n '10p' file.txt
+file=fl1.txt
+declare -A array
+
+while read line
+do
+     for word in $line
+     do
+       if [ -n "${array[$word]}" ]
+       then
+          array["$word"]=$((${array["$word"]} + 1))
+       else
+         array["$word"]=1
+       fi
+     done
+done < $file
+
+for key in "${!array[@]}"
+do
+echo $key ${array[$key]}
+done | sort -k2 -rn
