@@ -59,4 +59,17 @@ for i,el in enumerate(a):
     else :
         d.append(el)
 
-print(d)
+'''Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, 
+typically using all the original letters exactly once.'''
+
+import collections as c
+def groupAnagrams(strs):
+    d = c.defaultdict(list)
+
+    for string in strs:
+        tmp = ''.join(sorted(string))
+        d[tmp].append(string)
+
+    return list(d.values())
